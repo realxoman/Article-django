@@ -10,19 +10,14 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default="Quera")
+SECRET_KEY = env('SECRET_KEY', default="Blah_blah")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=True)
 
-try:
-    ALLOWED_HOSTS = env('ALLOWD_HOSTS', default="*").split(',')
-except:
-    ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = env('ALLOWD_HOSTS', default="*").split(',')
 
 # Application definition
-
 INSTALLED_APPS = [
     # Main Apps
     'django.contrib.admin',
@@ -78,7 +73,7 @@ if env('ENGINE_DB', default="") == 'postgresql':
             "USER": env("POSTGRES_USER"),
             "PASSWORD": env("POSTGRES_PASSWORD"),
             "HOST": env("POSTGRES_HOST"),
-            "PORT": env("POSTGRES_PORT"),
+            "PORT": env("POSTGRES_PORT", default=5432),
         },
     }
 else:

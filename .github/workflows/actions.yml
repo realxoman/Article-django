@@ -1,0 +1,67 @@
+name: Article_django
+on:
+    push:
+        branches:
+            - master
+            - main
+            - develop
+            - release
+    pull_request:
+        branches:
+            - master
+            - main
+            - develop
+            - release
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        env:
+            ENGINE_DB: "postgresql"
+            POSTGRES_PASSWORD: "root"
+            POSTGRES_USER: "postgresql"
+            POSTGRES_DB: 'article'
+            DEBUG: true
+            SECRET_KEY: "Blah_blah_blah"
+            POSTGRES_HOST: "localhost"
+
+        services:
+            mysql:
+                image: postgres
+                env:
+                    POSTGRES_PASSWORD: "root"
+                    POSTGRES_USER: "postgresql"
+                    POSTGRES_DB: 'article'
+                ports: [ '5432:5432' ]
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set up Python 3.11
+              uses: actions/setup-python@v2
+              with:
+                python-version: 3.11
+            - name: Install Dependencies
+              run: |
+                python -m pip install --upgrade pip
+                make install
+            - name: Run Migrations
+              run: make migrate
+            - name: Run Tests
+              run: make test
+
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Set up Python 3.11
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.11
+
+        - name: Install dependencies
+          run: pip install flake8
+
+        - name: Run flake8
+          run: make lint
