@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./src/media/:/media/
+      - ./dbdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${POSTGRES_DB}", "-U", "${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  app:
+    build: .
+    container_name: "app_article"
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/usr/src/app/
+      - ./src/static:/usr/src/app/static
+      - ./src/media:/usr/src/app/media
+    depends_on:
+      postgres:
+        condition: "service_healthy"
