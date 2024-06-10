@@ -1,12 +1,34 @@
 # Article-django
+## Overview
+This project is a Django-based web application designed to manage articles and their associated points. The application uses Docker for containerization, pre-commit for code quality checks, and GitHub Actions for continuous integration.
 
+## Get Started
+Before you can run this project, you need to have the following installed:
+- Docker
+- Docker Compose
+
+## Running the Project with Docker
+Use Docker Compose to build and start the containers:
+```bash
+docker-compose up --build -d
+```
+### Create a Superuser
+To access the Django admin interface, you need to create a superuser:
+```bash
+docker-compose exec app_article python manage.py createsuperuser
+```
+
+### Access the Application
+The application should now be running and accessible at http://localhost:8000.
+API Documentation (using Spectacular): http://localhost:8000
 
 
 ## Development
 
 ### Software Optimal & Secure Flow:
-We have a total_points & average_points to store final points.
-Save New data into cache for 30 minutes if points more than 100 we disable points creation.
+We have total_points and average_points to store final points.
+New data is cached for 30 minutes.
+If points exceed 100, point creation is disabled to prevent abuse.
 
 
 ### Use Pre-commit for development
@@ -46,8 +68,8 @@ Then you can use it with ```git commit``` and it will automatically check your f
     - [ ] Test Api
     - [ ] Test Large datasets
 - [ ] Finalize Project
-    - [ ] Documentation
-        - [ ] Documentation of deployment
-        - [ ] Documentation of software
-        - [ ] Screenshots
+    - [x] Documentation
+        - [x] Documentation of deployment
+        - [x] Documentation of software
+        - [x] Screenshots
     - [ ] Change Private Repository to Public
