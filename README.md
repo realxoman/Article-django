@@ -27,8 +27,8 @@ Then you can use it with ```git commit``` and it will automatically check your f
     - [x] Initialize Django REST API
     - [x] Initialize Spectacular REST API for documentation
     - [x] Implement ListView for Article
-    - [ ] Implement Point Creation
-    - [ ] Add points to Article
+    - [x] Implement Point Creation
+    - [x] Add points to Article
 - [ ] Security & Optimal Software Design
     - [ ] Optimal Plan & Flowchart
     - [ ] Security Plan for Flood points
