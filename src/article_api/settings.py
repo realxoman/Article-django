@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     # Third Party
 
     # My Applications
-
+    'article.apps.ArticleConfig',
 ]
 
 MIDDLEWARE = [
