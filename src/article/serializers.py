@@ -1,3 +1,5 @@
+from contextlib import suppress
+
 from django.core.cache import cache
 from django.conf import settings
 
@@ -21,8 +23,9 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
         request = self.context.get('request')
         user_point = None
-        if request.user.is_authenticated:
-            user_point: Point = obj.point_article.filter(user=request.user).first()
+        with suppress(Exception):  # Use suppress to ignore exceptions
+            if request.user.is_authenticated:
+                user_point: Point = obj.point_article.filter(user=request.user).first()
 
         if cache.get(cache_key_avg):
             average_score = cache.get(cache_key_avg)
@@ -34,8 +37,8 @@ class ArticleListSerializer(serializers.ModelSerializer):
             cache.set(cache_key_count, ratings_count, settings.CACHE_TIME)
 
         context = {
-            "number_of_points": average_score,
-            "average_point": ratings_count,
+            "number_of_points": ratings_count,
+            "average_point": average_score,
             "user_point": user_point.point if user_point else None
         }
         return context

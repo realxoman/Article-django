@@ -64,8 +64,8 @@ Then you can use it with ```git commit``` and it will automatically check your f
     - [x] Optimize Application
 - [ ] Tests
     - [ ] Create sample data
-    - [ ] Test Model
-    - [ ] Test Api
+    - [x] Test Model
+    - [x] Test Api
     - [ ] Test Large datasets
 - [ ] Finalize Project
     - [x] Documentation
