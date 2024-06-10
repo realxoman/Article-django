@@ -37,8 +37,8 @@ Then you can use it with ```git commit``` and it will automatically check your f
 - [ ] Security & Optimal Software Design
     - [x] Optimal Plan & Flowchart
     - [x] Security Plan for Flood points
-    - [ ] Optimize Model
-    - [ ] Optimize Viewsets
+    - [x] Optimize Model
+    - [x] Optimize Viewsets
     - [ ] Optimize Application
 - [ ] Tests
     - [ ] Create sample data
