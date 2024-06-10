@@ -1,3 +1,9 @@
-# from django.shortcuts import render
+from rest_framework import viewsets, mixins
 
-# Create your views here.
+from article.models import Article
+from article.serializers import ArticleListSerializer
+
+
+class ArticleViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleListSerializer

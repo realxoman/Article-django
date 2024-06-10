@@ -22,12 +22,28 @@ Then you can use it with ```git commit``` and it will automatically check your f
 - [x] Dockerize Project
 - [x] Clean code checker with pre-commit
 - [x] Github action for code check and tests
-- [ ] Article app
+- [ ] Start Article app
     - [x] Model Creation
-    - [ ] Initialize Django Rest API
-    - [ ] Implement ListView
+    - [x] Initialize Django REST API
+    - [x] Initialize Spectacular REST API for documentation
+    - [x] Implement ListView for Article
     - [ ] Implement Point Creation
-    - [ ] Optimizing Point Check
-    - [ ] Flood Restrictions
-    - [ ] Tests
-- [ ] Documentation
+    - [ ] Add points to Article
+- [ ] Security & Optimal Software Design
+    - [ ] Optimal Plan & Flowchart
+    - [ ] Security Plan for Flood points
+    - [ ] Optimize Model
+    - [ ] Optimize Viewsets
+    - [ ] Optimize Application
+- [ ] Tests
+    - [ ] Create sample data
+    - [ ] Test Model
+    - [ ] Test Api
+    - [ ] Test Large datasets
+- [ ] Finalize Project
+    - [ ] Update Docker if needed (staging version) 
+    - [ ] Documentation
+        - [ ] Documentation of deployment
+        - [ ] Documentation of software
+        - [ ] Screenshots
+    - [ ] Change Private Repository to Public
