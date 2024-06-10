@@ -4,6 +4,11 @@
 
 ## Development
 
+### Software Optimal & Secure Flow:
+We have a total_points & average_points to store final points.
+Save New data into cache for 30 minutes if points more than 100 we disable points creation.
+
+
 ### Use Pre-commit for development
 At first install pre-commit package:
 ```bash
@@ -22,7 +27,7 @@ Then you can use it with ```git commit``` and it will automatically check your f
 - [x] Dockerize Project
 - [x] Clean code checker with pre-commit
 - [x] Github action for code check and tests
-- [ ] Start Article app
+- [x] Start Article app
     - [x] Model Creation
     - [x] Initialize Django REST API
     - [x] Initialize Spectacular REST API for documentation
@@ -30,8 +35,8 @@ Then you can use it with ```git commit``` and it will automatically check your f
     - [x] Implement Point Creation
     - [x] Add points to Article
 - [ ] Security & Optimal Software Design
-    - [ ] Optimal Plan & Flowchart
-    - [ ] Security Plan for Flood points
+    - [x] Optimal Plan & Flowchart
+    - [x] Security Plan for Flood points
     - [ ] Optimize Model
     - [ ] Optimize Viewsets
     - [ ] Optimize Application
