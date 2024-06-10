@@ -31,8 +31,8 @@ class Point(BaseModel):
     class Meta:
         unique_together = ["article", "user"]
 
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, related_name="point_article", on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), related_name="point_user", on_delete=models.CASCADE)
     point = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
 
     def save(self, *args, **kwargs):
