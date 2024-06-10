@@ -34,3 +34,15 @@ class Point(BaseModel):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     point = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            existing_point = Point.objects.filter(article=self.article, user=self.user).first()
+            if existing_point:
+                # Update the existing point instead of creating a new one
+                existing_point.point = self.point
+                existing_point.save()
+                return
+
+        # Call the original save method
+        super(Point, self).save(*args, **kwargs)
