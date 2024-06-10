@@ -34,19 +34,18 @@ Then you can use it with ```git commit``` and it will automatically check your f
     - [x] Implement ListView for Article
     - [x] Implement Point Creation
     - [x] Add points to Article
-- [ ] Security & Optimal Software Design
+- [x] Security & Optimal Software Design
     - [x] Optimal Plan & Flowchart
     - [x] Security Plan for Flood points
     - [x] Optimize Model
     - [x] Optimize Viewsets
-    - [ ] Optimize Application
+    - [x] Optimize Application
 - [ ] Tests
     - [ ] Create sample data
     - [ ] Test Model
     - [ ] Test Api
     - [ ] Test Large datasets
 - [ ] Finalize Project
-    - [ ] Update Docker if needed (staging version) 
     - [ ] Documentation
         - [ ] Documentation of deployment
         - [ ] Documentation of software

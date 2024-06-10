@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from django.conf import settings
 
 from rest_framework import serializers
 
@@ -13,8 +14,8 @@ class ArticleListSerializer(serializers.ModelSerializer):
     points = serializers.SerializerMethodField()
 
     def get_points(self, obj: Article):
-        cache_key_avg = f'post_{obj.id}_avg'
-        cache_key_count = f'post_{obj.id}_count'
+        cache_key_avg = f'article_{obj.id}_avg'
+        cache_key_count = f'article_{obj.id}_count'
         if obj.average_points == 0:
             obj.calculate_average_points()
 
@@ -29,8 +30,8 @@ class ArticleListSerializer(serializers.ModelSerializer):
         else:
             average_score = obj.average_points
             ratings_count = obj.count_points
-            cache.set(cache_key_avg, average_score, 60)
-            cache.set(cache_key_count, ratings_count, 60)
+            cache.set(cache_key_avg, average_score, settings.CACHE_TIME)
+            cache.set(cache_key_count, ratings_count, settings.CACHE_TIME)
 
         context = {
             "number_of_points": average_score,
@@ -44,3 +45,19 @@ class ArticlePointSerializer(serializers.ModelSerializer):
     class Meta:
         model = Point
         fields = ['point']
+
+    def save(self, **kwargs):
+        article = kwargs.get('article')
+        user = kwargs.get('user')
+        cache_key_count = f'article_{article.id}_count_force'
+
+        if cache.get(cache_key_count):
+            if cache.get(cache_key_count) >= settings.CACHE_LIMIT:
+                raise serializers.ValidationError("Flood Detected. Try Again Later")
+            else:
+                cache.incr(cache_key_count)
+        else:
+            cache.set(cache_key_count, 1, settings.CACHE_TIME)
+
+        # Call the parent class's save method with validated data
+        super().save(article=article, user=user)

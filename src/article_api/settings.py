@@ -146,3 +146,5 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
+CACHE_TIME = 60 * 30
+CACHE_LIMIT = 100
