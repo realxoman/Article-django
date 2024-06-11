@@ -23,6 +23,22 @@ The application should now be running and accessible at http://localhost:8000.
 API Documentation (using Spectacular): http://localhost:8000
 
 
+## Testing
+### Running Tests
+To run tests, use the following command:
+```bash
+docker-compose exec app_article python manage.py test
+```
+This will run all tests including model tests, API tests, and management command tests.
+
+### Generating Sample Data
+To generate sample data for testing purposes, use the following management command:
+```bash
+docker-compose exec app_article python manage.py generate_sample_data
+```
+This command will populate the database with sample data including users, articles, and points.
+
+
 ## Development
 
 ### Software Optimal & Secure Flow:
@@ -62,14 +78,14 @@ Then you can use it with ```git commit``` and it will automatically check your f
     - [x] Optimize Model
     - [x] Optimize Viewsets
     - [x] Optimize Application
-- [ ] Tests
-    - [ ] Create sample data
+- [x] Tests
+    - [x] Create sample data
     - [x] Test Model
     - [x] Test Api
-    - [ ] Test Large datasets
-- [ ] Finalize Project
+    - [x] Test Large datasets
+- [x] Finalize Project
     - [x] Documentation
         - [x] Documentation of deployment
         - [x] Documentation of software
         - [x] Screenshots
-    - [ ] Change Private Repository to Public
+    - [x] Change Private Repository to Public
