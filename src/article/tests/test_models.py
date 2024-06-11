@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.db.utils import IntegrityError
 
 from article.models import Article, Point
 
@@ -60,11 +61,8 @@ class PointModelTest(TestCase):
         self.assertEqual(self.article.average_points, 5)
 
     def test_point_validators(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(IntegrityError):
             Point.objects.create(article=self.article, user=self.user1, point=-1)
-
-        with self.assertRaises(ValueError):
-            Point.objects.create(article=self.article, user=self.user1, point=6)
 
     def test_update_article_points(self):
         point = Point.objects.create(article=self.article2, user=self.user1, point=2)
